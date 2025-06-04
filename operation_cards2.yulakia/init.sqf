@@ -32,6 +32,32 @@ itemfactory addAction [
 ];
 
 itemfactory addAction [
+    "Manufacture medical supply crate",
+    {
+        params ["_target", "_caller", "_actionId", "_arguments"];
+        
+        if (_target getVariable ["canManufacture", true]) then {
+            _target setVariable ["canManufacture", false];
+            
+            createVehicle ["ACE_medicalSupplyCrate_advanced", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
+            [_target] spawn {
+                sleep 10;
+                (_this select 0) setVariable ["canManufacture", true];
+            };
+        } else {
+            hint "You must wait before using this again.";
+        };
+    },
+    [],
+    6,
+    false,
+    true,
+    "",
+    "_target distance _this < 8"
+];
+
+itemfactory addAction [
     "Manufacture vehicle ammo crate",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
