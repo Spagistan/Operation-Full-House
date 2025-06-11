@@ -9,19 +9,22 @@ itemfactory addAction [
     "Manufacture crate (empty)",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
-        
+
         if (_target getVariable ["canManufacture", true]) then {
             _target setVariable ["canManufacture", false];
 
-            private _crate = createVehicle ["rhs_7ya37_1_single", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
-
-            clearWeaponCargoGlobal _crate;
-            clearMagazineCargoGlobal _crate;
-            clearItemCargoGlobal _crate;
-            clearBackpackCargoGlobal _crate;
+            _target say3D "FactorySound";
 
             [_target] spawn {
-                sleep 10;
+                sleep 10.8;
+
+                private _crate = createVehicle ["rhs_7ya37_1_single", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
+                clearWeaponCargoGlobal _crate;
+                clearMagazineCargoGlobal _crate;
+                clearItemCargoGlobal _crate;
+                clearBackpackCargoGlobal _crate;
+
                 (_this select 0) setVariable ["canManufacture", true];
             };
         } else {
@@ -40,9 +43,14 @@ itemfactory addAction [
     "Manufacture supply crate",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
-        
+
         if (_target getVariable ["canManufacture", true]) then {
             _target setVariable ["canManufacture", false];
+
+            _target say3D "FactorySound";
+
+            [_target] spawn {
+                sleep 10.8;
 
             private _crate1 = createVehicle ["rhs_7ya37_1_single", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
 
@@ -70,8 +78,6 @@ itemfactory addAction [
             _crate1 addItemCargoGlobal ["ACE_salineIV_500", 5];
             _crate1 addMagazineCargoGlobal ["murshun_cigs_cigpack", 1];
 
-            [_target] spawn {
-                sleep 10;
                 (_this select 0) setVariable ["canManufacture", true];
             };
         } else {
@@ -90,14 +96,17 @@ itemfactory addAction [
     "Manufacture medical supply crate",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
-        
+
         if (_target getVariable ["canManufacture", true]) then {
             _target setVariable ["canManufacture", false];
-            
-            createVehicle ["ACE_medicalSupplyCrate_advanced", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
+            _target say3D "FactorySound";
 
             [_target] spawn {
-                sleep 10;
+                sleep 10.8;
+
+                createVehicle ["ACE_medicalSupplyCrate_advanced", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
                 (_this select 0) setVariable ["canManufacture", true];
             };
         } else {
@@ -116,14 +125,17 @@ itemfactory addAction [
     "Manufacture vehicle ammo crate",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
-        
+
         if (_target getVariable ["canManufacture", true]) then {
             _target setVariable ["canManufacture", false];
-            
-            createVehicle ["Box_East_AmmoVeh_F", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
+            _target say3D "FactorySound";
 
             [_target] spawn {
-                sleep 10;
+                sleep 10.8;
+
+            createVehicle ["Box_East_AmmoVeh_F", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
                 (_this select 0) setVariable ["canManufacture", true];
             };
         } else {
@@ -142,14 +154,17 @@ itemfactory addAction [
     "Manufacture concertina wire",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
-        
+
         if (_target getVariable ["canManufacture", true]) then {
             _target setVariable ["canManufacture", false];
-            
-            createVehicle ["ACE_ConcertinaWireCoil", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
+            _target say3D "FactorySound";
 
             [_target] spawn {
-                sleep 10;
+                sleep 10.8;
+
+            createVehicle ["ACE_ConcertinaWireCoil", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
                 (_this select 0) setVariable ["canManufacture", true];
             };
         } else {
@@ -168,14 +183,17 @@ itemfactory addAction [
     "Manufacture fuel can",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
-        
+
         if (_target getVariable ["canManufacture", true]) then {
             _target setVariable ["canManufacture", false];
-            
-            createVehicle ["rhsusf_props_ScepterMFC_OD", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
+            _target say3D "FactorySound";
 
             [_target] spawn {
-                sleep 10;
+                sleep 10.8;
+
+            createVehicle ["rhsusf_props_ScepterMFC_OD", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
                 (_this select 0) setVariable ["canManufacture", true];
             };
         } else {
@@ -194,14 +212,17 @@ itemfactory addAction [
     "Manufacture spare wheel",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
-        
+
         if (_target getVariable ["canManufacture", true]) then {
             _target setVariable ["canManufacture", false];
-            
-            createVehicle ["ACE_Wheel", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
+            _target say3D "FactorySound";
 
             [_target] spawn {
-                sleep 10;
+                sleep 10.8;
+
+            createVehicle ["ACE_Wheel", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
                 (_this select 0) setVariable ["canManufacture", true];
             };
         } else {
@@ -220,14 +241,17 @@ itemfactory addAction [
     "Manufacture spare track",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
-        
+
         if (_target getVariable ["canManufacture", true]) then {
             _target setVariable ["canManufacture", false];
-            
-            createVehicle ["ACE_Track", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
+            _target say3D "FactorySound";
 
             [_target] spawn {
-                sleep 10;
+                sleep 10.8;
+
+            createVehicle ["ACE_Track", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
                 (_this select 0) setVariable ["canManufacture", true];
             };
         } else {

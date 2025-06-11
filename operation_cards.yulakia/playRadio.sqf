@@ -3,7 +3,7 @@ if (isNil { missionNamespace getVariable "mySounds" }) then
     private _songContainer = 
     [
     ["BirinchiMuhabbatim", 535], ["BloodType", 285], ["CeddinDeden", 118], ["Chollima", 159], ["DabkaTarbyia", 421],
-    ["DabkeElOuyoun", 153], ["DefendTheRev", 192], ["Gulbadan", 347], ["Karvon", 404], ["Korobeiniki", 290], 
+    ["DabkeElOuyoun", 153], ["DefendTheRev", 192], ["Gulbadan", 347], ["Korobeiniki", 290], 
     ["OltinQanot", 331], ["PlevneMarch", 175], ["Saddam", 201], ["Samovars", 150]];
     missionNamespace setVariable ["mySounds", _songContainer];
 };
