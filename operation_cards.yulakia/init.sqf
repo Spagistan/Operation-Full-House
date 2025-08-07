@@ -6,7 +6,7 @@ ffa_func_userInput = compile preprocessFileLineNumbers "Foxholes\fn_userInput.sq
 call ffa_func_userInput;
 
 itemfactory addAction [
-    "Manufacture crate (empty)",
+    "Manufacture Crate (Empty)",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
 
@@ -19,6 +19,7 @@ itemfactory addAction [
                 sleep 10.8;
 
                 private _crate = createVehicle ["rhs_7ya37_1_single", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+                _crate setVariable ["ace_cargo_customName", "Empty", true];
 
                 clearWeaponCargoGlobal _crate;
                 clearMagazineCargoGlobal _crate;
@@ -40,7 +41,7 @@ itemfactory addAction [
 ];
 
 itemfactory addAction [
-    "Manufacture supply crate",
+    "Manufacture Rifle Supply Crate",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
 
@@ -53,6 +54,8 @@ itemfactory addAction [
                 sleep 10.8;
 
             private _crate1 = createVehicle ["rhs_7ya37_1_single", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+            _crate1 setVariable ["ace_cargo_customName", "Rifle Squad Supply Crate", true];
+            _crate1 setVariable ["ace_cargo_noRename", true];
 
             clearWeaponCargoGlobal _crate1;
             clearMagazineCargoGlobal _crate1;
@@ -93,7 +96,7 @@ itemfactory addAction [
 ];
 
 itemfactory addAction [
-    "Manufacture medical supply crate",
+    "Manufacture Weapons Supply Crate",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
 
@@ -105,7 +108,23 @@ itemfactory addAction [
             [_target] spawn {
                 sleep 10.8;
 
-                createVehicle ["ACE_medicalSupplyCrate_advanced", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+            private _crate3 = createVehicle ["rhs_7ya37_1_single", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+            _crate3 setVariable ["ace_cargo_customName", "Weapons Squad Supply Crate", true];
+            _crate3 setVariable ["ace_cargo_noRename", true];
+
+            clearWeaponCargoGlobal _crate3;
+            clearMagazineCargoGlobal _crate3;
+            clearItemCargoGlobal _crate3;
+            clearBackpackCargoGlobal _crate3;
+            
+            _crate3 addMagazineCargoGlobal ["rhssaf_250Rnd_762x54R", 4];
+            _crate3 addMagazineCargoGlobal ["rhs_rpg7_PG7VS_mag", 6];
+            _crate3 addMagazineCargoGlobal ["rhs_rpg7_type69_airburst_mag", 3];
+            _crate3 addMagazineCargoGlobal ["rhs_rpg7_TBG7V_mag", 3];
+            _crate3 addMagazineCargoGlobal ["rhs_rpg7_OG7V_mag", 2];
+            _crate3 addItemCargoGlobal ["ACE_EarPlugs", 3];
+            _crate3 addItemCargoGlobal ["ACE_canteen", 1];
+            _crate3 addMagazineCargoGlobal ["murshun_cigs_cigpack", 1];
 
                 (_this select 0) setVariable ["canManufacture", true];
             };
@@ -122,7 +141,59 @@ itemfactory addAction [
 ];
 
 itemfactory addAction [
-    "Manufacture vehicle ammo crate",
+    "Manufacture Medical Supply Crate",
+    {
+        params ["_target", "_caller", "_actionId", "_arguments"];
+
+        if (_target getVariable ["canManufacture", true]) then {
+            _target setVariable ["canManufacture", false];
+
+           [_target, "FactorySound"] remoteExec ["say3D", 0];
+
+            [_target] spawn {
+                sleep 10.8;
+
+            private _crate2 = createVehicle ["ACE_medicalSupplyCrate_advanced", getMarkerPos "marker_21", [], 0, "CAN_COLLIDE"];
+
+                clearWeaponCargoGlobal _crate2;
+                clearMagazineCargoGlobal _crate2;
+                clearItemCargoGlobal _crate2;
+                clearBackpackCargoGlobal _crate2;
+
+                _crate2 addItemCargoGlobal ["ACE_elasticBandage", 75];
+                _crate2 addItemCargoGlobal ["ACE_packingBandage", 75];
+                _crate2 addItemCargoGlobal ["ACE_quikclot", 75];
+                _crate2 addItemCargoGlobal ["ACE_bodyBag", 5];
+                _crate2 addItemCargoGlobal ["ACE_CableTie", 25];
+                _crate2 addItemCargoGlobal ["ACE_morphine", 25];
+                _crate2 addItemCargoGlobal ["ACE_epinephrine", 25];
+                _crate2 addItemCargoGlobal ["ACE_salineIV", 40];
+                _crate2 addItemCargoGlobal ["ACE_salineIV_500", 40];
+                _crate2 addItemCargoGlobal ["ACE_tourniquet", 16];
+                _crate2 addItemCargoGlobal ["ACE_splint", 16];
+                _crate2 addItemCargoGlobal ["ACE_EarPlugs", 3];
+                _crate2 addItemCargoGlobal ["ACE_suture", 100];
+                _crate2 addItemCargoGlobal ["ACE_surgicalKit", 4];
+                _crate2 addItemCargoGlobal ["ACE_painkillers", 15];
+                _crate2 addItemCargoGlobal ["ACE_suture", 100];
+                _crate2 addMagazineCargoGlobal ["murshun_cigs_cigpack", 1];
+
+                (_this select 0) setVariable ["canManufacture", true];
+            };
+        } else {
+            hint "You must wait before using this again.";
+        };
+    },
+    [],
+    6,
+    false,
+    true,
+    "",
+    "_target distance _this < 8"
+];
+
+itemfactory addAction [
+    "Manufacture Vehicle Ammo Crate",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
 
@@ -151,7 +222,7 @@ itemfactory addAction [
 ];
 
 itemfactory addAction [
-    "Manufacture concertina wire",
+    "Manufacture Concertina Wire",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
 
@@ -180,7 +251,7 @@ itemfactory addAction [
 ];
 
 itemfactory addAction [
-    "Manufacture fuel can",
+    "Manufacture Fuel Can",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
 
@@ -209,7 +280,7 @@ itemfactory addAction [
 ];
 
 itemfactory addAction [
-    "Manufacture spare wheel",
+    "Manufacture Spare Wheel",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
 
@@ -238,7 +309,7 @@ itemfactory addAction [
 ];
 
 itemfactory addAction [
-    "Manufacture spare track",
+    "Manufacture Spare Track",
     {
         params ["_target", "_caller", "_actionId", "_arguments"];
 
